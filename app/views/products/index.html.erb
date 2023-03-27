@@ -1,4 +1,7 @@
 <div>
   <h1 class="font-bold text-4xl">Products#index</h1>
-  <p>Find me in app/views/products/index.html.erb</p>
+  <% @product.each do |product| %>
+    <%= product.title %>
+    Q<%= product.price %>
+  <% end %>
 </div>
