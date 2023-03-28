@@ -1,10 +1,8 @@
 <header class="bg-white">
   <nav class="mx-auto grid grid-cols-4 items-center justify-between p-4 px-8 bg-fuchsia-300" aria-label="Global">
-    <div class="">
-      <a href="#" class="-m-1.5 p-1.5">
-        <%= image_tag asset_path('ekisukiLogo.png'), class: 'h-24' %>
-      </a>
-    </div>
+    <%= link_to products_path, class: "-m-1.5 p-1.5" do %>
+      <%= image_tag asset_path('ekisukiLogo.png'), class: 'h-24' %>
+    <% end %>
     <div class="col-span-2">
       <label class="relative block">
         <span class="sr-only">Search</span>
