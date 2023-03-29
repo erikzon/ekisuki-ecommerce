@@ -1,0 +1,22 @@
+<%= form_with(url: sessions_path) do |form| %>
+  <div>
+    <%= form.label :login, 'Correo o nombre de usuario' %>
+    <%= form.text_field :login %>
+  </div>
+
+  <div>
+    <%= form.label :password, 'Contraseña' %>
+    <%= form.password_field :password %>
+  </div>
+
+  <div>
+    <%= form.submit 'Iniciar Sesion' %>
+  </div>
+
+  <div>
+    <h2>No tienes cuenta? Registrate <%= link_to new_user_path, class:'text-fuchsia-600' do %>
+        Aqui.
+      <% end %></h2>
+
+  </div>
+<% end %>
