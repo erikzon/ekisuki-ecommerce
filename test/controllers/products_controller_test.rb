@@ -18,7 +18,8 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
       product: {
         title: 'Sticker Zelda',
         description: 'tamano 4 x 5',
-        price: 25
+        price: 25,
+        category_id: categories(:camisas).id
       }
     }
 
@@ -31,7 +32,8 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
       product: {
         title: '',
         description: 'tamano 4 x 5',
-        price: 25
+        price: 25,
+        category_id: categories(:camisas).id
       }
     }
 

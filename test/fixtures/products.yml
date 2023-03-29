@@ -1,11 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  title: MyString
-  description: MyText
-  price: 1
+naruto:
+  title: Sticker Naruto
+  description: Sticker naruto full color 3 x 3 pulgadas
+  price: 35
+  category: stickers
 
-two:
-  title: MyString
-  description: MyText
-  price: 1
+evangelion:
+  title: Camisa Evangelion
+  description: Colores blanco y negro
+  price: 75
+  category: camisas

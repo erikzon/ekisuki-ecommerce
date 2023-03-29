@@ -7,23 +7,24 @@
   <div>
     <h1 class="font-bold text-4xl">Agregar producto</h1>
     <div class="my-5">
-    <%= form.label :title %>
-    <%= form.text_field :title, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+      <%= form.label :title, 'Titulo' %>
+      <%= form.text_field :title, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
     </div>
     <div class="my-5">
-    <%= form.label :description %>
-    <%= form.text_area :description, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+      <%= form.label :description, 'Descripcion' %>
+      <%= form.text_area :description, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
     </div>
     <div class="my-5">
-    <%= form.label :price %>
-    <%= form.number_field :price, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+      <%= form.label :price, 'Precio' %>
+      <%= form.number_field :price, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
     </div>
-    <%#= form.label :descripcion %>
-    <%#= form.collection_select :category_id, Category.all.order(name: :asc), :id, :name %>
-
+    <div class="my-5">
+      <%= form.label :category, 'Categoria' %>
+      <%= form.collection_select :category_id, Category.all.order(name: :asc), :id, :name %>
+    </div>
     <%#= form.label :photo %>
     <%#= form.file_field :photo %>
   </div>
-  <%= form.submit class: "rounded-lg py-3 px-5 bg-fuchsia-600 text-white inline-block font-medium cursor-pointer"%>
-  <%= link_to 'Back to home', products_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+  <%= form.submit 'Crear producto', class: "rounded-lg py-3 px-5 bg-fuchsia-600 text-white inline-block font-medium cursor-pointer" %>
+  <%= link_to 'Regresar al Home', products_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
 <% end %>

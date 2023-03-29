@@ -1,7 +1,8 @@
 <div>
-  <h1 class="font-bold text-4xl">Products#index</h1>
   <% @product.each do |product| %>
-    <%= product.title %>
-    Q<%= product.price %>
+    <div class="block">
+      <%= product.title %>
+      Q<%= product.price %>
+    </div>
   <% end %>
 </div>
