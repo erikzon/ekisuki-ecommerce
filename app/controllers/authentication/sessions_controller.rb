@@ -7,7 +7,12 @@ class Authentication::SessionsController < ApplicationController
 
     if @user&.authenticate(params[:password])
       session[:user_id] = @user.id
-      redirect_to products_path, notice: "Bienvenid@ #{@user.username}"
+      if @user.admin?
+        redirect_to admin_index_path, notice: "Bienvenido admin c:<"
+      else
+        redirect_to products_path, notice: "Bienvenid@ #{@user.username}"
+      end
+
     else
       redirect_to new_session_path, alert: "Datos incorrectos."
     end
@@ -17,8 +22,5 @@ class Authentication::SessionsController < ApplicationController
     session[:user_id] = nil
     reset_session
     redirect_to products_path, notice: "Sesion Finalizada."
-    # session[:user_id] = nil
-    # Current.user = nil
-    # redirect_to products_path, notice: "Sesion Finalizada."
   end
 end

@@ -1,12 +1,9 @@
 Rails.application.routes.draw do
-  resources :categories, except: :show
-  get 'products/index'
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  get 'admin/index'
+  resources :categories, except: [:show,:index]
+  # get 'products/index'
 
-  # Defines the root path route ("/")
-  # root "articles#index"
-
-  resources :products, path: '/'
+  resources :products, path: '/', except: [:new]
 
   namespace :authentication, path: '', as: '' do
     resources :users, only: [:new, :create]

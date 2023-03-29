@@ -12,7 +12,7 @@ class ProductsController < ApplicationController
     if @product.save
       redirect_to new_product_path, notice: "Producto creado correctamente"
     else
-      render :new, status: :unprocessable_entity
+      redirect_to admin_index_path, status: :unprocessable_entity
     end
   end
 
