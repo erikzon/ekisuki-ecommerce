@@ -3,6 +3,7 @@
     <div class="block">
       <%= product.title %>
       Q<%= product.price %>
+      <%= image_tag product&.photos[0], width: 200 if product.photos.attached?%>
     </div>
   <% end %>
 </div>

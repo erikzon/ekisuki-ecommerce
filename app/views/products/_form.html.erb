@@ -22,8 +22,10 @@
       <%= form.label :category, 'Categoria' %>
       <%= form.collection_select :category_id, Category.all.order(name: :asc), :id, :name %>
     </div>
-    <%#= form.label :photo %>
-    <%#= form.file_field :photo %>
+    <div class="my-5">
+      <%= form.label :photos, 'Fotos' %>
+      <%= form.file_field :photos,  multiple: true %>
+    </div>
   </div>
   <%= form.submit 'Crear producto', class: "rounded-lg py-3 px-5 bg-fuchsia-600 text-white inline-block font-medium cursor-pointer" %>
   <%= link_to 'Regresar al Home', products_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
