@@ -5,6 +5,7 @@
   </p>
 
   <% if action_name != "show" %>
+    <%= image_tag category&.photo, width: 200 if category.photo.attached?%>
     <%= link_to 'Editar la categoria', edit_category_path(category), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
     <%= link_to 'Eliminar esta categoria', category_path(category), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium", data: {
       turbo_method: :delete,
