@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get 'admin/index'
   resources :categories, except: [:show,:index]
+  resources :tags, except: [:show,:index]
   # get 'products/index'
 
   resources :products, path: '/', except: [:new]
