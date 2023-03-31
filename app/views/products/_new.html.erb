@@ -23,9 +23,15 @@
         <%= form.label :category, 'Categoria' %>
         <%= form.collection_select :category_id, Category.all.order(name: :asc), :id, :name %>
       </div>
+
+      <div class="my-5">
+        <%= form.label :tag, 'Tags' %>
+        <%= form.collection_check_boxes :tags, Tag.all.order(name: :asc), :id, :name, { :include_hidden => false }, { multiple: true } %>
+      </div>
+
       <div class="my-5">
         <%= form.label :photos, 'Fotos' %>
-        <%= form.file_field :photos,  multiple: true %>
+        <%= form.file_field :photos, multiple: true %>
       </div>
     </div>
     <%= form.submit 'Crear producto', class: "rounded-lg py-3 px-5 bg-fuchsia-600 text-white inline-block font-medium cursor-pointer" %>

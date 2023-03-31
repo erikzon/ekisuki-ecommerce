@@ -1,0 +1,10 @@
+<div class="mx-auto md:w-2/3 w-full">
+  <div class="flex justify-between items-center">
+    <h1 class="font-bold text-4xl">Tags</h1>
+    <%= link_to 'Agregar Tag', new_tag_path, class: "rounded-lg py-3 px-5 bg-fuchsia-600 text-white block font-medium" %>
+  </div>
+
+  <div id="categories" class="min-w-full">
+    <%= render @tags %>
+  </div>
+</div>

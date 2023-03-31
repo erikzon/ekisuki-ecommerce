@@ -1,0 +1,16 @@
+<div id="<%= dom_id tag %>">
+  <p class="my-5">
+    <strong class="font-medium mb-1">Nombre:</strong>
+    <%= tag.name %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= image_tag tag&.photo, width: 200 if tag.photo.attached?%>
+    <%= link_to 'Editar tag', edit_tag_path(tag), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to 'Eliminar tag', tag_path(tag), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium", data: {
+      turbo_method: :delete,
+      turbo_confirm: "Estas seguro de eliminarla? "
+    } %>
+    <hr class="mt-6">
+  <% end %>
+</div>
