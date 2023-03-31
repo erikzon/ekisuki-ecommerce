@@ -2,12 +2,8 @@ require "test_helper"
 
 class CategoriesControllerTest < ActionDispatch::IntegrationTest
   setup do
+    loginAdmin
     @category = categories(:camisas)
-  end
-
-  test "should get index" do
-    get categories_url
-    assert_response :success
   end
 
   test "should get new" do
@@ -19,8 +15,7 @@ class CategoriesControllerTest < ActionDispatch::IntegrationTest
     assert_difference("Category.count") do
       post categories_url, params: { category: { name: @category.name } }
     end
-
-    assert_redirected_to categories_url
+    assert_redirected_to admin_index_path
   end
 
   test "should get edit" do
@@ -30,7 +25,7 @@ class CategoriesControllerTest < ActionDispatch::IntegrationTest
 
   test "should update category" do
     patch category_url(@category), params: { category: { name: @category.name } }
-    assert_redirected_to categories_url
+    assert_redirected_to admin_index_path
   end
 
   test "should destroy category" do
@@ -38,6 +33,6 @@ class CategoriesControllerTest < ActionDispatch::IntegrationTest
       delete category_url(categories(:sinuso).id)
     end
 
-    assert_redirected_to categories_url
+    assert_redirected_to admin_index_path
   end
 end

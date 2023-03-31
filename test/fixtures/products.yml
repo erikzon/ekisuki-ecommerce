@@ -11,3 +11,9 @@ evangelion:
   description: Colores blanco y negro
   price: 75
   category: camisas
+
+quintillizas:
+  title: sticker Quintillizas
+  description: Colores blanco y negro
+  price: 75
+  category: stickers

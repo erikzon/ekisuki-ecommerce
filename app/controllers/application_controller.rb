@@ -9,6 +9,6 @@ class ApplicationController < ActionController::Base
   end
 
   def protect_pages
-    redirect_to new_session_path unless Current.user&.admin
+    redirect_to products_path unless Current.user&.admin
   end
 end

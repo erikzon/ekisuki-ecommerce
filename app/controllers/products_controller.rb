@@ -11,10 +11,14 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params.except(:tags))
     create_or_delete_product_tags(@product, params[:product][:tags])
-    if @product.save
-      redirect_to admin_index_path, notice: "Producto creado correctamente"
+    if @product.tags.present?
+      if @product.save
+        redirect_to admin_index_path, notice: "Producto creado correctamente"
+      else
+        redirect_to admin_index_path, status: :unprocessable_entity, alert: "No se pudo crear el producto."
+      end
     else
-      redirect_to admin_index_path, status: :unprocessable_entity, alert: "No se pudo crear el producto."
+      redirect_to admin_index_path, status: :unprocessable_entity, alert: "No se pudo crear el producto ya que no tiene tags."
     end
   end
 
@@ -22,8 +26,7 @@ class ProductsController < ApplicationController
 
   def create_or_delete_product_tags(product, tags)
     product.taggings.destroy_all
-    #cambiar esto por un iterados de array
-    tags.each do |tag|
+    tags&.each do |tag|
       pp Tag.find_or_create_by(id: tag)
       product.tags << Tag.find_or_create_by(id: tag)
     end
