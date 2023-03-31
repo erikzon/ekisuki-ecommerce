@@ -1,6 +1,5 @@
 class Authentication::SessionsController < ApplicationController
-  def new
-  end
+  skip_before_action :protect_pages
 
   def create
     @user = User.find_by("email = :login OR username = :login", { login: params[:login] })

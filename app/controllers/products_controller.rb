@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+  skip_before_action :protect_pages, only: [:index, :show]
   def index
     @product = Product.all
   end
