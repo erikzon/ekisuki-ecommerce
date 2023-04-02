@@ -1,8 +1,15 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: %i[ show edit update destroy ]
+  skip_before_action :protect_pages, only: [:index, :show]
   # GET /categories/new
   def new
     @category = Category.new
+  end
+
+  def index
+    @category = Category.all
+    @tag = Tag.all
+    @topSellerProduct = Product.first
   end
 
   # GET /categories/1/edit

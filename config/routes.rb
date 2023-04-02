@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
+  root 'categories#index'
   get 'admin/index'
-  resources :categories, except: [:show,:index]
-  resources :tags, except: [:show,:index]
-  # get 'products/index'
+  resources :categories, except: [:show]
+  # get 'categories/index', path: '/'
 
-  resources :products, path: '/', except: [:new]
+
+  resources :tags, except: [:show,:index]
+  resources :products, except: [:new]
+
 
   namespace :authentication, path: '', as: '' do
     resources :users, only: [:new, :create]

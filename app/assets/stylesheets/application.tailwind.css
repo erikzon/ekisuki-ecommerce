@@ -2,12 +2,40 @@
 @tailwind components;
 @tailwind utilities;
 
-/*
 
-@layer components {
-  .btn-primary {
-    @apply py-2 px-4 bg-blue-200;
-  }
+@layer categoria {
+    .nav-categorias {
+        @apply flex justify-center my-6;
+    }
+
+    .categoria {
+        @apply flex items-center self-center flex-col ;
+    }
+
+    .img-categorias {
+        max-width: 100% !important;
+        height: 100px !important;
+        clip-path: circle();
+    }
+
+    .text-categoria {
+        @apply text-fuchsia-600;
+    }
 }
 
-*/
+@layer tag {
+    .nav-tags {
+        @apply flex justify-center my-6 gap-4;
+    }
+
+    .tag {
+        @apply flex items-center self-center flex-col ;
+    }
+
+    .img-tag {
+        max-width: 100% !important;
+        height: 200px !important;
+    }
+}
+
+

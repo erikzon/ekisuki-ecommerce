@@ -1,0 +1,39 @@
+<section class="nav-categorias">
+  <% @category.each do |category| %>
+    <div id="<%= dom_id category %>" class="categoria">
+      <%= image_tag category&.photo, class: "img-categorias" if category.photo.attached? %>
+      <p class="text-categoria">
+        <%= category.name %>
+      </p>
+    </div>
+  <% end %>
+</section>
+
+<section class="flex my-8 text-fuchsia-600 gap-8 justify-evenly">
+  <article class="flex flex-col basis-1/2">
+    <div class="text-center">
+      <h2 class="">Como Ordenar</h2>
+      <p>Unicamente agregas al carrito los articulos, completas los datos requerridos
+        y al mandar el pedido se te estara enviando un correo de confirmacion de orden,
+        ten en cuenta por el momento realizamos enviós en el area de la capital, si tu orden
+        es a un seccion donde no tenemos cobertura se te notificará por correo</p>
+    </div>
+    <div>
+      Somo una tienda en línea con mas de 10 año de experiencia, empezamos como un pequeño
+      emprendimiento, realizando bisutería con diferentes materiales como porcelana fría, poco
+      a poco nos fuimos expandiendo hasta tener productos sublimados e impresos.
+    </div>
+  </article>
+  <article class="flex flex-col justify-center">
+    <h3>Lo mas Vendido</h3>
+    <%= image_tag @topSellerProduct&.photos[0], width: 200 if @topSellerProduct&.photos.attached? %>
+  </article>
+</section>
+
+<section class="nav-tags">
+  <% @tag.each do |tag| %>
+    <div id="<%= dom_id tag %>" class="tag">
+      <%= image_tag tag&.photo, class: "img-tag" if tag.photo.attached? %>
+    </div>
+  <% end %>
+</section>
