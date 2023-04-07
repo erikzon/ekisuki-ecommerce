@@ -13,7 +13,9 @@ class CategoriesController < ApplicationController
   end
 
   # GET /categories/1/edit
-  def edit
+  def show
+    @tag = Tag.joins(:products => :category).where(:categories => { :id => @category }).distinct
+    @product = Product.where(:category_id =>  @category )
   end
 
   # POST /categories or /categories.json

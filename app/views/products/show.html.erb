@@ -1,1 +1,36 @@
-<h3>porque?</h3>
+<%#= image_tag @product&.photos[0], width: 200 if @product.photos.attached? %>
+
+<% if @product.photos.attached? %>
+  <%= image_tag @product.photos[@selected_image_index], width: 200 %>
+  <div>
+    <%= button_to "Anterior", selected_image_index: @selected_image_index - 1, method: :get %>
+    <%= button_to "Siguiente", selected_image_index: @selected_image_index + 1, method: :get %>
+  </div>
+<% end %>
+
+<h1 class="title"><%= @product.title %></h1>
+<p class="description"><%= @product.description %></p>
+<span class="price"><%= @product.price %></span>
+<br>
+<% if @roduct&.tags.present? %>
+  <strong>Tags:</strong>
+<% end %>
+<% @product&.tags.each do |tag| %>
+  <span class="tag"><%= tag.name.capitalize %></span>
+<% end %>
+
+<% if Current.user.present? %>
+  <% if Current.user.admin? %>
+    <br>
+    <br>
+    <%= link_to 'Editar este producto', edit_product_path(@product) %>
+    <br>
+    <br>
+    <%= button_to 'Eliminar producto', product_path(@product), method: :delete, data: { turbo_confirm: t('common.confirm') } %>
+  <% else %>
+<!--    NO ES ADMIN-->
+  <% end %>
+<% else %>
+<!--  NO INICIO SESION-->
+<% end %>
+

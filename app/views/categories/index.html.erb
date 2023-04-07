@@ -1,11 +1,12 @@
 <section class="nav-categorias">
   <% @category.each do |category| %>
-    <div id="<%= dom_id category %>" class="categoria">
+    <!--    id:"<%#= dom_id category %>"-->
+    <%= link_to category_path(category.id), class: "categoria", id: dom_id(category) do %>
       <%= image_tag category&.photo, class: "img-categorias" if category.photo.attached? %>
       <p class="text-categoria">
         <%= category.name %>
       </p>
-    </div>
+    <% end %>
   <% end %>
 </section>
 

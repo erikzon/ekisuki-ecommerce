@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'categories#index'
   get 'admin/index'
-  resources :categories, except: [:show]
+  resources :categories
   # get 'categories/index', path: '/'
 
 

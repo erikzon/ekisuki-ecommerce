@@ -1,11 +1,41 @@
 class ProductsController < ApplicationController
   skip_before_action :protect_pages, only: [:index, :show]
+
   def index
     @product = Product.all
   end
 
   def new
     @product = Product.new()
+  end
+
+  def edit
+    product
+  end
+
+  def update
+    @product = Product.find(params[:id])
+    @product.assign_attributes(product_params.except(:tags))
+    create_or_delete_product_tags(@product, params[:product][:tags])
+    if @product.tags.present?
+      if @product.save
+        redirect_to product_path(product.id), notice: "Producto editado correctamente"
+      else
+        redirect_to product_path(product.id), status: :unprocessable_entity, alert: "No se pudo editar el producto."
+      end
+    else
+      redirect_to product_path(product.id), status: :unprocessable_entity, alert: "No se pudo editar el producto ya que no tiene tags."
+    end
+  end
+
+  def show
+    @product = Product.find(params[:id])
+    @selected_image_index = params[:selected_image_index].to_i || 0
+  end
+
+  def destroy
+    product.destroy!
+    redirect_to root_path, notice: "Producto eliminado."
   end
 
   def create
@@ -23,6 +53,10 @@ class ProductsController < ApplicationController
   end
 
   private
+
+  def product
+    @product = Product.find(params[:id])
+  end
 
   def create_or_delete_product_tags(product, tags)
     product.taggings.destroy_all
