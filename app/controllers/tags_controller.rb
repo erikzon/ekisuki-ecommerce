@@ -1,6 +1,6 @@
 class TagsController < ApplicationController
   before_action :set_tag, only: %i[ show edit update destroy ]
-
+  skip_before_action :protect_pages, only: [:index, :show]
   # GET /tags/new
   def new
     @tag = Tag.new
