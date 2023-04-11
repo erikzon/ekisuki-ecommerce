@@ -1,4 +1,4 @@
-<%= render 'categories/categoryHeader' %>
+<%= render 'categories/categoriesList' %>
 
 <% if @product.photos.attached? %>
   <%= image_tag @product.photos[@selected_image_index], width: 200 %>
@@ -35,4 +35,5 @@
 <% else %>
   <!--  NO INICIO SESION-->
 <% end %>
+<%= render 'tags/tagsFooter' %>
 

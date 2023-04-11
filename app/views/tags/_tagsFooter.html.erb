@@ -1,0 +1,7 @@
+<section class="nav-tags">
+  <% @tag.each do |tag| %>
+    <%= link_to tag_path(tag.id), class:"tag",id: dom_id(tag) do %>
+      <%= image_tag tag&.photo, class: "img-tag" if tag.photo.attached? %>
+    <% end %>
+  <% end %>
+</section>

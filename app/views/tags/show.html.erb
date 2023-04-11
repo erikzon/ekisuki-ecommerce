@@ -1,4 +1,4 @@
-<%= render 'categories/categoryHeader' %>
+<%= render 'categories/categoriesList' %>
 <div class="grid grid-cols-3">
   <% @product.each do |product| %>
     <%= link_to product_path(product.id), class: "my-8", id: dom_id(product) do %>

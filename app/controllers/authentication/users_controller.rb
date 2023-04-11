@@ -2,6 +2,7 @@ class Authentication::UsersController < ApplicationController
   skip_before_action :protect_pages
 
   def new
+    @category = Category.all
     @user = User.new
   end
 
