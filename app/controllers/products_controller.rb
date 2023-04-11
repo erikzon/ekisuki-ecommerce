@@ -29,6 +29,7 @@ class ProductsController < ApplicationController
   end
 
   def show
+    @categoryList = Category.all
     @product = Product.find(params[:id])
     @selected_image_index = params[:selected_image_index].to_i || 0
   end

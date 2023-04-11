@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   # get 'categories/index', path: '/'
 
 
-  resources :tags, except: [:show,:index]
+  resources :tags, except: [:index]
   resources :products, except: [:new]
 
 

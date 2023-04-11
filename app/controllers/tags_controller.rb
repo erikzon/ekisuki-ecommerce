@@ -10,6 +10,12 @@ class TagsController < ApplicationController
   def edit
   end
 
+  def show
+    @categoryList = Category.all
+    @category = Product.joins(:taggings => :tag).where(:tags => { :id => @tag }).distinct
+    @product = Product.joins(:taggings => :tag).where(:tags => { :id => @tag }).distinct
+  end
+
   # POST /tags
   def create
     @tag = Tag.new(tag_params)

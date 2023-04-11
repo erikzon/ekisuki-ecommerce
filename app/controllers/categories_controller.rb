@@ -14,6 +14,7 @@ class CategoriesController < ApplicationController
 
   # GET /categories/1/edit
   def show
+    @categoryList = Category.all
     @tag = Tag.joins(:products => :category).where(:categories => { :id => @category }).distinct
     @product = Product.where(:category_id =>  @category )
   end

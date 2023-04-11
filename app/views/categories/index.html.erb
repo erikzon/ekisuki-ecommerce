@@ -33,8 +33,8 @@
 
 <section class="nav-tags">
   <% @tag.each do |tag| %>
-    <div id="<%= dom_id tag %>" class="tag">
-      <%= image_tag tag&.photo, class: "img-tag" if tag.photo.attached? %>
-    </div>
+    <%= link_to tag_path(tag.id), class:"tag",id: dom_id(tag) do %>
+        <%= image_tag tag&.photo, class: "img-tag" if tag.photo.attached? %>
+    <% end %>
   <% end %>
 </section>

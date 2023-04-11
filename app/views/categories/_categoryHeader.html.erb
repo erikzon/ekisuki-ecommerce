@@ -1,0 +1,9 @@
+<section class="flex justify-evenly gap-4 text-fuchsia-600" style="background-color: #F1DAFC">
+  <% @categoryList.each do |category| %>
+    <%= link_to category_path(category.id), class: "categoria gap-4", id: dom_id(category) do %>
+      <p>
+        <%= category.name %>
+      </p>
+    <% end %>
+  <% end %>
+</section>

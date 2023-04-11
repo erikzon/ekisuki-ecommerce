@@ -1,4 +1,4 @@
-<%#= image_tag @product&.photos[0], width: 200 if @product.photos.attached? %>
+<%= render 'categories/categoryHeader' %>
 
 <% if @product.photos.attached? %>
   <%= image_tag @product.photos[@selected_image_index], width: 200 %>
@@ -16,7 +16,9 @@
   <strong>Tags:</strong>
 <% end %>
 <% @product&.tags.each do |tag| %>
-  <span class="tag"><%= tag.name.capitalize %></span>
+  <%= link_to tag_path(tag.id), class: "tag", id: dom_id(tag) do %>
+    <span class="tag"><%= tag.name.capitalize %></span>
+  <% end %>
 <% end %>
 
 <% if Current.user.present? %>
@@ -28,9 +30,9 @@
     <br>
     <%= button_to 'Eliminar producto', product_path(@product), method: :delete, data: { turbo_confirm: t('common.confirm') } %>
   <% else %>
-<!--    NO ES ADMIN-->
+    <!--    NO ES ADMIN-->
   <% end %>
 <% else %>
-<!--  NO INICIO SESION-->
+  <!--  NO INICIO SESION-->
 <% end %>
 
