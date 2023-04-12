@@ -1,0 +1,15 @@
+<h2>CARRITO DE COMPRAS</h2>
+<div>
+  <% @product.each do |product| %>
+    <div class="flex content-center items-center">
+      <%= image_tag product&.photos[0], width: 200 if product.photos.attached? %>
+      <%= product.title %>
+      Q<%= product.price %>
+      <%= button_to '❌', cart_path(product_id: product.id), method: :delete %>
+    </div>
+  <% end %>
+  <h3>Total:</h3>
+  <%= @product.sum(&:price) %>
+</div>
+
+

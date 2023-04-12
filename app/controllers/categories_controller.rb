@@ -15,8 +15,9 @@ class CategoriesController < ApplicationController
   # GET /categories/1/edit
   def show
     @categoryList = Category.all
-    @tag = Tag.joins(:products => :category).where(:categories => { :id => @category }).distinct
-    @product = Product.where(:category_id =>  @category )
+    @tagLista = Tag.joins(:products => :category).where(:categories => { :id => @category }).distinct
+    @tag = Tag.all
+    @product = Product.where(:category_id => @category)
   end
 
   # POST /categories or /categories.json
@@ -53,13 +54,14 @@ class CategoriesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_category
-      @category = Category.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def category_params
-      params.require(:category).permit(:name, :photo)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_category
+    @category = Category.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def category_params
+    params.require(:category).permit(:name, :photo)
+  end
 end

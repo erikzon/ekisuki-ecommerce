@@ -21,6 +21,8 @@
   <% end %>
 <% end %>
 
+<%= button_to '🛒', carts_path(product_id: @product.id), method: :post %>
+
 <% if Current.user.present? %>
   <% if Current.user.admin? %>
     <br>
@@ -28,7 +30,7 @@
     <%= link_to 'Editar este producto', edit_product_path(@product) %>
     <br>
     <br>
-    <%= button_to 'Eliminar producto', product_path(@product), method: :delete, data: { turbo_confirm: t('common.confirm') } %>
+    <%= button_to 'Eliminar producto', product_path(@product), method: :delete, data: { turbo_confirm: 'Estas Seguro de elminar este producto?'} %>
   <% else %>
     <!--    NO ES ADMIN-->
   <% end %>
