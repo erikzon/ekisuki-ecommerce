@@ -21,7 +21,7 @@
   <% end %>
 <% end %>
 
-<%= button_to '🛒', carts_path(product_id: @product.id), method: :post %>
+<%= button_to '🛒', (Current.user.present? ? carts_path(product_id: @product.id) : new_session_path) , method: (Current.user.present? ? :post : :get) %>
 
 <% if Current.user.present? %>
   <% if Current.user.admin? %>
