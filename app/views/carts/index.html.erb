@@ -1,15 +1,59 @@
 <h2>CARRITO DE COMPRAS</h2>
-<div>
-  <% @product.each do |product| %>
-    <div class="flex content-center items-center">
-      <%= image_tag product&.photos[0], width: 200 if product.photos.attached? %>
-      <%= product.title %>
-      Q<%= product.price %>
-      <%= button_to '❌', cart_path(product_id: product.id), method: :delete %>
-    </div>
-  <% end %>
+<div class="relative overflow-x-auto">
+  <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+    <tr>
+      <th scope="col" class="px-6 py-3">
+        Imagen
+      </th>
+      <th scope="col" class="px-6 py-3">
+        Producto
+      </th>
+      <th scope="col" class="px-6 py-3">
+        Precio
+      </th>
+      <th scope="col" class="px-6 py-3">
+        Cantidad
+      </th>
+      <th scope="col" class="px-6 py-3">
+        Total
+      </th>
+      <th scope="col" class="px-6 py-3">
+        Accion
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @product.each do |product| %>
+      <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+          <% if product.photos.attached? %>
+            <%= link_to product_path(product.id), class: "my-8", id: dom_id(product) do %>
+              <%= image_tag product.photos[0], width: 200 %>
+            <% end %>
+          <% end %>
+        </th>
+        <td class="px-6 py-4">
+          <%= product.title %>
+        </td>
+        <td class="px-6 py-4">
+          Q<%= product.price %>
+        </td>
+        <td class="px-6 py-4">
+          <%= form_with model: @cart, url: cart_path(product_id: product.id), method: :patch do |form| %>
+            <%= form.select :quantity, options_for_select((1..5).to_a, product.cart_quantity), {}, { class: "", onchange: "this.form.submit();" } %>
+          <% end %>
+        </td>
+        <td class="px-6 py-4">
+          Q<%= product.price * product.cart_quantity %>
+        </td>
+        <td class="px-6 py-4">
+          <%= button_to '❌', cart_path(product_id: product.id), method: :delete %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
   <h3>Total:</h3>
-  <%= @product.sum(&:price) %>
+  Q<%= @product.map { |p| p.price * p.cart_quantity }.sum %>
 </div>
-
-

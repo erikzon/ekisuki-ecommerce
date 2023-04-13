@@ -12,7 +12,7 @@
 <p class="description"><%= @product.description %></p>
 <span class="price"><%= @product.price %></span>
 <br>
-<% if @roduct&.tags.present? %>
+<% if @product&.tags.present? %>
   <strong>Tags:</strong>
 <% end %>
 <% @product&.tags.each do |tag| %>
@@ -21,7 +21,13 @@
   <% end %>
 <% end %>
 
-<%= button_to '🛒', (Current.user.present? ? carts_path(product_id: @product.id) : new_session_path) , method: (Current.user.present? ? :post : :get) %>
+<%= form_with model: @Cart, url: '/carts' do |form| %>
+  <%= form.label :title, 'Cantidad:' %>
+  <%= form.select :quantity, options_for_select((1..5).to_a), {}, { class: "" } %>
+  <%= form.hidden_field :product_id, value: @product.id %>
+
+  <%= form.submit '🛒', class: "rounded-lg py-3 px-5 bg-fuchsia-200 text-white inline-block font-medium cursor-pointer" %>
+<% end %>
 
 <% if Current.user.present? %>
   <% if Current.user.admin? %>
@@ -30,7 +36,7 @@
     <%= link_to 'Editar este producto', edit_product_path(@product) %>
     <br>
     <br>
-    <%= button_to 'Eliminar producto', product_path(@product), method: :delete, data: { turbo_confirm: 'Estas Seguro de elminar este producto?'} %>
+    <%= button_to 'Eliminar producto', product_path(@product), method: :delete, data: { turbo_confirm: 'Estas Seguro de elminar este producto?' } %>
   <% else %>
     <!--    NO ES ADMIN-->
   <% end %>

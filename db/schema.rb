@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_11_205430) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_13_135243) do
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -44,6 +44,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_11_205430) do
     t.bigint "product_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "quantity", default: 1
     t.index ["product_id"], name: "index_carts_on_product_id"
     t.index ["user_id", "product_id"], name: "index_carts_on_user_id_and_product_id", unique: true
     t.index ["user_id"], name: "index_carts_on_user_id"

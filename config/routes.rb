@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :categories
   resources :tags, except: [:index]
   resources :products, except: [:new]
-  resources :carts, only: [:create,:index, :destroy], param: :product_id
+  resources :carts, param: :product_id
 
   namespace :authentication, path: '', as: '' do
     resources :users, only: [:new, :create]

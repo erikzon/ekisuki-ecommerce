@@ -33,6 +33,7 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     @selected_image_index = params[:selected_image_index].to_i || 0
     @tag = Tag.all
+    @quantity = 1
   end
 
   def destroy
@@ -41,6 +42,7 @@ class ProductsController < ApplicationController
   end
 
   def create
+    @Cart = Cart.all
     @product = Product.new(product_params.except(:tags))
     create_or_delete_product_tags(@product, params[:product][:tags])
     if @product.tags.present?
