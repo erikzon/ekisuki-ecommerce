@@ -1,0 +1,37 @@
+<%= form_with(model: order, class: "contents") do |form| %>
+  <% if order.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+      <h2><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h2>
+
+      <ul>
+        <% order.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="my-5">
+    <%= form.label :name, 'Nombre de persona que recibe' %>
+    <%= form.text_field :name, value: @last_order_name %>
+  </div>
+  <div class="my-5">
+    <%= form.label :phone_number, 'Teléfono' %>
+    <%= form.text_field :phone_number, value: @last_order_phone_number %>
+  </div>
+  <div class="my-5">
+    <%= form.label :email, 'Correo' %>
+    <%= form.email_field :email, value: @last_order_email %>
+  </div>
+  <div class="my-5">
+    <%= form.label :shipping_address , 'Direccion de entrega' %>
+    <%= form.text_field :shipping_address, value: @last_order_shipping_address %>
+  </div>
+  <div class="my-5">
+    <%= form.label :note, 'Datos de entrega adicionales' %>
+    <%= form.text_area :note, value: @last_order_note %>
+  </div>
+  <div class="inline">
+    <%= form.submit 'Ordernar 💥', class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+  </div>
+<% end %>

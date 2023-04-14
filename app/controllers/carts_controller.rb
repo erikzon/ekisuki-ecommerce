@@ -18,7 +18,7 @@ class CartsController < ApplicationController
 
   def index
     @cart = Cart.all
-    @product = Product.joins(:carts).where(:carts => { :user_id => Current.user.id }).select("products.*, carts.quantity as cart_quantity")
+    @product = Product.joins(:carts).where(carts: { user_id: Current.user.id, order_id: nil }).select("products.*, carts.quantity as cart_quantity")
   end
 
   def edit

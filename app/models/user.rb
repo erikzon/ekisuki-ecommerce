@@ -14,6 +14,7 @@ class User < ApplicationRecord
   validates :password, length: { minimum: 6 }, presence: true
 
   has_many :carts, dependent: :destroy
+  has_many :orders, dependent: :destroy
 
   before_save :downcase_attributes
 

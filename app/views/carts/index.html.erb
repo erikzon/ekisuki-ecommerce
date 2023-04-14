@@ -61,6 +61,11 @@
     <% end %>
     </tbody>
   </table>
-  <h3>Total:</h3>
-  Q<%= @product.map { |p| p.price * p.cart_quantity }.sum %>
+  <div class="flex">
+    <h3>Total:</h3>
+    Q<%= @product.map { |p| p.price * p.cart_quantity }.sum %>
+  </div>
+
+
+  <%= link_to "Proporcionar Datos de Envio", new_order_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
 </div>

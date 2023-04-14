@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :tags, except: [:index]
   resources :products, except: [:new]
   resources :carts, param: :product_id
+  resources :orders, except: [:delete, :update]
 
   namespace :authentication, path: '', as: '' do
     resources :users, only: [:new, :create]
