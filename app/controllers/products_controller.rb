@@ -32,7 +32,7 @@ class ProductsController < ApplicationController
     @categoryList = Category.all
     @product = Product.find(params[:id])
     @selected_image_index = params[:selected_image_index].to_i || 0
-    @tag = Tag.all
+    @tag = Tag.order("RANDOM()").limit(5)
     @quantity = 1
   end
 

@@ -8,15 +8,15 @@ class CategoriesController < ApplicationController
 
   def index
     @category = Category.all
-    @tag = Tag.all
-    @topSellerProduct = Product.first
+    @tag = Tag.order("RANDOM()").limit(5)
+    @topSellerProduct = Product&.first
   end
 
   # GET /categories/1/edit
   def show
     @categoryList = Category.all
     @tagLista = Tag.joins(:products => :category).where(:categories => { :id => @category }).distinct
-    @tag = Tag.all
+    @tag = Tag.order("RANDOM()").limit(5)
     @product = Product.where(:category_id => @category)
   end
 

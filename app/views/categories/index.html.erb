@@ -17,7 +17,7 @@
   </article>
   <article class="flex flex-col justify-center">
     <h3>Lo mas Vendido</h3>
-    <%= image_tag @topSellerProduct&.photos[0], width: 200 if @topSellerProduct&.photos.attached? %>
+    <%= image_tag @topSellerProduct&.photos[0], width: 200 if @topSellerProduct&.photos&.attached? %>
   </article>
 </section>
 
