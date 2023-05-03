@@ -1,7 +1,34 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Amaranth&display=swap');
+.text-theme {
+    color: #F18CE7;
+}
 
+.bg-theme {
+    background-color: #F1DAFC;
+}
+
+* {
+
+    font-family: 'Amaranth', sans-serif;
+}
+
+.clip-circle {
+    clip-path: circle();
+    aspect-ratio: 1;
+    overflow: hidden;
+    object-fit: scale-down;
+    background-color: #D9D9D9;
+}
+
+.clip-square {
+    aspect-ratio: 1;
+    overflow: hidden;
+    object-fit: scale-down;
+    background-color: #D9D9D9;
+}
 
 @layer categoria {
     .nav-categorias {
@@ -15,7 +42,7 @@
     .img-categorias {
         max-width: 100% !important;
         height: 100px !important;
-        clip-path: circle();
+
     }
 
     .text-categoria {

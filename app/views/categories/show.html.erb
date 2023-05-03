@@ -1,6 +1,9 @@
 <%= render 'categories/categoriesList' %>
+<div class="sm:hidden basis-full text-gray-600 mx-4 mt-4">
+  <%= @category.name %>
+</div>
 <div class="flex">
-  <div>
+  <div class="hidden sm:flex">
     <%= @category.name %>
     <% @tagLista.each do |tag| %>
       <%= link_to tag_path(tag.id), class: "tag", id: dom_id(tag) do %>
@@ -8,24 +11,16 @@
       <% end %>
     <% end %>
   </div>
-  <div class="grid grid-cols-3">
+  <div class="grid grid-cols-2 gap-2 p-4 sm:grid-cols-3">
     <% @product.each do |product| %>
-      <%= link_to product_path(product.id), class: "my-8", id: dom_id(product) do %>
-
+      <%= link_to product_path(product.id), class: "my-2", id: dom_id(product) do %>
         <%= image_tag product&.photos[0], width: 200 if product.photos.attached? %>
         <span class="text-fuchsia-600"><%= product.title %></span>
         <br>
         <span class="text-fuchsia-600">Q<%= product.price %></span>
-
-        <%# if product&.tags.present? %>
-        <!--        <strong>Tags:</strong>-->
-        <%# end %>
-        <%# product&.tags.each do |tag| %>
-        <!--        <span class="tag"><%#= tag.name.capitalize %></span>-->
-        <%# end %>
-
       <% end %>
     <% end %>
   </div>
 </div>
+<hr class="text-green-500 bg-blue-600 sm:hiden"/>
 <%= render 'tags/tagsFooter' %>

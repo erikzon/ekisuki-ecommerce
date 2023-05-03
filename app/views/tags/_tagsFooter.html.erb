@@ -1,7 +1,7 @@
-<section class="nav-tags">
+<section class="grid grid-cols-2 gap-4 p-4">
   <% @tag.each do |tag| %>
     <%= link_to tag_path(tag.id), class:"tag",id: dom_id(tag) do %>
-      <%= image_tag tag&.photo, class: "img-tag" if tag.photo.attached? %>
+      <%= image_tag tag&.photo, class: "clip-square" if tag.photo.attached? %>
     <% end %>
   <% end %>
 </section>

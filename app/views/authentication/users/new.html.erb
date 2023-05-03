@@ -1,28 +1,34 @@
-<%= form_with(model: @user) do |form| %>
-  <% @user.errors.full_messages.each do |error| %>
-    <div>
-      <%= error %>
+<div class="bg-theme p-4 mx-4 my-8 text-theme rounded-lg">
+
+  <%= form_with(model: @user) do |form| %>
+    <% @user.errors.full_messages.each do |error| %>
+      <div>
+        <%= error %>
+      </div>
+    <% end %>
+
+    <h2 class="text-center text-3xl">Registrate</h2>
+
+    <div class="flex flex-col text-center mt-4">
+      <%= form.label :email, 'Correo' %>
+      <%= form.email_field :email, class: 'placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-transparent rounded-xl py-2 pl-3 pr-9 shadow-lg focus:outline-none focus:border-fuchsia-500 focus:ring-fuchsia-500 focus:ring-1 sm:text-sm' %>
     </div>
-  <%end %>
 
-  <div>
-    <%= form.label :email, 'Correo'%>
-    <%= form.email_field :email %>
-  </div>
+    <div class="flex flex-col text-center mt-4">
+      <%= form.label :username, 'Nombre de usuario' %>
+      <%= form.text_field :username, class: 'placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-transparent rounded-xl py-2 pl-3 pr-9 shadow-lg focus:outline-none focus:border-fuchsia-500 focus:ring-fuchsia-500 focus:ring-1 sm:text-sm' %>
+    </div>
 
-  <div>
-    <%= form.label :username, 'Nombre de usuario' %>
-    <%= form.text_field :username %>
-  </div>
-  <div>
-    <%= form.label :password, 'Contraseña'%>
-    <%= form.password_field :password %>
-    <%= form.label :password_confirmation, 'confirma tu contraseña'%>
-    <%= form.password_field :password_confirmation %>
-  </div>
+    <div class="flex flex-col text-center mt-4">
+      <%= form.label :password, 'Contraseña' %>
+      <%= form.password_field :password, class: 'placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-transparent rounded-xl py-2 pl-3 pr-9 shadow-lg focus:outline-none focus:border-fuchsia-500 focus:ring-fuchsia-500 focus:ring-1 sm:text-sm' %>
+      <%= form.label :password_confirmation, 'Confirma tu contraseña' %>
+      <%= form.password_field :password_confirmation , class: 'placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-transparent rounded-xl py-2 pl-3 pr-9 shadow-lg focus:outline-none focus:border-fuchsia-500 focus:ring-fuchsia-500 focus:ring-1 sm:text-sm' %>
+    </div>
 
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
+    <div class="flex justify-center mt-4 mb-1 p-4">
+      <%= form.submit 'Crear Usuario', class: 'px-6 py-3 rounded-xl drop-shadow-xl bg-white'%>
+    </div>
+  <% end %>
+</div>
 <%= render 'categories/categoriesCircles' %>
