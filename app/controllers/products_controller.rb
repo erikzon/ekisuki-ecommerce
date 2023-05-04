@@ -31,6 +31,8 @@ class ProductsController < ApplicationController
   def show
     @categoryList = Category.all
     @product = Product.find(params[:id])
+    category = Category.find(@product.category_id)
+    @productCategoryName = category.name
     @selected_image_index = params[:selected_image_index].to_i || 0
     @tag = Tag.order("RANDOM()").limit(5)
     @quantity = 1

@@ -1,38 +1,21 @@
-<h2>CARRITO DE COMPRAS</h2>
-<div class="relative overflow-x-auto">
+<h2 class="text-theme m-4 text-4xl drop-shadow-lg">Carrito</h2>
+<div class="relative overflow-x-auto text-theme">
   <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-    <tr>
-      <th scope="col" class="px-6 py-3">
-        Imagen
-      </th>
-      <th scope="col" class="px-6 py-3">
-        Producto
-      </th>
-      <th scope="col" class="px-6 py-3">
-        Precio
-      </th>
-      <th scope="col" class="px-6 py-3">
-        Cantidad
-      </th>
-      <th scope="col" class="px-6 py-3">
-        Total
-      </th>
-      <th scope="col" class="px-6 py-3">
-        Accion
-      </th>
-    </tr>
-    </thead>
     <tbody>
     <% if @product.size < 1 %>
       <tr>
-        <th colspan="6" class="text-center">
+        <th colspan="6" class="text-center text-gray-700">
           NO TIENE PRODUCTOS EN TU CARRITO :(
         </th>
       </tr>
     <% end %>
     <% @product.each do |product| %>
-      <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+      <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-theme">
+        <td class="pl-3 w-10">
+          <%= button_to cart_path(product_id: product.id), method: :delete do %>
+            <%= image_tag "icons/deleteItemFromCart.svg", alt: "Imagen", class: "w-full" %>
+          <% end %>
+        </td>
         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
           <% if product.photos.attached? %>
             <%= link_to product_path(product.id), class: "my-8", id: dom_id(product) do %>
@@ -40,32 +23,31 @@
             <% end %>
           <% end %>
         </th>
-        <td class="px-6 py-4">
-          <%= product.title %>
+        <td class="px-2 py-2 text-sm">
+          <div class="flex flex-col">
+            <%= product.title %>
+            <br>
+            Q<%= product.price %> c/u
+            <br>
+            sub-total Q<%= product.price * product.cart_quantity %>
+          </div>
         </td>
-        <td class="px-6 py-4">
-          Q<%= product.price %>
-        </td>
-        <td class="px-6 py-4">
+        <td class="px-4 py-2">
           <%= form_with model: @cart, url: cart_path(product_id: product.id), method: :patch do |form| %>
-            <%= form.select :quantity, options_for_select((1..5).to_a, product.cart_quantity), {}, { class: "", onchange: "this.form.submit();" } %>
+            <%= form.select :quantity, options_for_select((1..5).to_a, product.cart_quantity), {}, { class: "border-0 rounded-xl bg-theme", onchange: "this.form.submit();" } %>
           <% end %>
-        </td>
-        <td class="px-6 py-4">
-          Q<%= product.price * product.cart_quantity %>
-        </td>
-        <td class="px-6 py-4">
-          <%= button_to '❌', cart_path(product_id: product.id), method: :delete %>
         </td>
       </tr>
     <% end %>
     </tbody>
   </table>
-  <div class="flex">
+  <div class="flex justify-evenly text-3xl">
     <h3>Total:</h3>
-    Q<%= @product.map { |p| p.price * p.cart_quantity }.sum %>
+    <span>
+      Q<%= @product.map { |p| p.price * p.cart_quantity }.sum %>
+    </span>
   </div>
-
-
-  <%= link_to "Proporcionar Datos de Envio", new_order_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+  <div class="flex justify-evenly text-xl mt-4">
+    <%= link_to "Proporcionar Datos de Envio", new_order_path, class: "ml-2 rounded-lg py-3 px-5 bg-theme text-theme inline-block font-medium" %>
+  </div>
 </div>

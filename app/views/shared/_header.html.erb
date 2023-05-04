@@ -22,7 +22,6 @@
       </section>
     </div>
 
-
     <div class="hidden sm:block">
       <label class="relative block">
         <span class="sr-only">Buscar</span>
@@ -38,11 +37,11 @@
       <% end %>
     <% else %>
       <%= link_to new_session_path do %>
-        <%= image_tag 'icons/loginIcon.svg', width: 40, height: 40 %>
+        <%= image_tag 'icons/loginIcon.svg', width: 42, height: 42 %>
       <% end %>
     <% end %>
     <%= image_tag 'icons/saleIcon.svg', class: 'hidden sm:block', width: 42, height: 42 %>
-    <%= link_to (Current.user.present? ? carts_path : new_session_path) do %>
+    <%= link_to carts_path do %>
       <%= image_tag 'icons/cartIcon.svg', width: 42, height: 42 %>
     <% end %>
   </nav>

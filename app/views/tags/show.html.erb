@@ -1,20 +1,16 @@
 <%= render 'categories/categoriesList' %>
-<div class="grid grid-cols-3">
+<div class="sm:hidden basis-full text-gray-600 mx-4 mt-4">
+<span class="font-bold text-xl">
+    <%= @tag.name %>
+  </span>
+</div>
+
+<div class="grid grid-cols-2 gap-4 p-4 sm:grid-cols-3">
   <% @product.each do |product| %>
-    <%= link_to product_path(product.id), class: "my-8", id: dom_id(product) do %>
-
-      <%= image_tag product&.photos[0], width: 200 if product.photos.attached? %>
-      <span class="text-fuchsia-600"><%= product.title %></span>
-      <br>
-      <span class="text-fuchsia-600">Q<%= product.price %></span>
-
-      <%# if product&.tags.present? %>
-      <!--        <strong>Tags:</strong>-->
-      <%# end %>
-      <%# product&.tags.each do |tag| %>
-      <!--        <span class="tag"><%#= tag.name.capitalize %></span>-->
-      <%# end %>
-
+    <%= link_to product_path(product.id), class: "my-2 flex flex-col justify-center hover:shadow-xl hover:rounded-xl ease-in-out duration-300 hover:scale-105", id: dom_id(product) do %>
+      <%= image_tag product&.photos[0], class: "clip-square" if product.photos.attached? %>
+      <span class="text-theme text-center"><%= product.title %></span>
+      <span class="text-theme text-xl font-bold text-center">Q<%= product.price %></span>
     <% end %>
   <% end %>
 </div>

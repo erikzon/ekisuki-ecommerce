@@ -10,6 +10,14 @@
     background-color: #F1DAFC;
 }
 
+.ring-theme {
+    --tw-ring-color: #F18CE7;
+}
+
+.border-theme {
+    border-color: #F1DAFC;
+}
+
 * {
 
     font-family: 'Amaranth', sans-serif;
@@ -20,14 +28,12 @@
     aspect-ratio: 1;
     overflow: hidden;
     object-fit: scale-down;
-    background-color: #D9D9D9;
 }
 
 .clip-square {
     aspect-ratio: 1;
     overflow: hidden;
-    object-fit: scale-down;
-    background-color: #D9D9D9;
+    object-fit: cover;
 }
 
 @layer categoria {

@@ -1,16 +1,9 @@
-<div>
-  <% @product.each do |product| %>
-    <div class="block">
-      <%= product.title %>
-      Q<%= product.price %>
-      <%= image_tag product&.photos[0], width: 200 if product.photos.attached? %>
-
-      <% if product&.tags.present? %>
-        <strong>Tags:</strong>
-      <% end %>
-      <% product&.tags.each do |tag| %>
-        <span class="tag"><%= tag.name.capitalize %></span>
-      <% end %>
-    </div>
+<div class="grid grid-cols-2 gap-4 p-4 sm:grid-cols-3">
+<% @product.each do |product| %>
+  <%= link_to product_path(product.id), class: "my-2 flex flex-col justify-center hover:shadow-xl hover:rounded-xl ease-in-out duration-300 hover:scale-105", id: dom_id(product) do %>
+    <%= image_tag product&.photos[0], class: "clip-square" if product.photos.attached? %>
+    <span class="text-theme text-center"><%= product.title %></span>
+    <span class="text-theme text-xl font-bold text-center">Q<%= product.price %></span>
   <% end %>
+<% end %>
 </div>

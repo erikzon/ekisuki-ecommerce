@@ -1,33 +1,45 @@
 <%= render 'categories/categoriesList' %>
-
-<% if @product.photos.attached? %>
-  <%= image_tag @product.photos[@selected_image_index], width: 200 %>
-  <div>
-    <%= button_to "Anterior", selected_image_index: @selected_image_index - 1, method: :get %>
-    <%= button_to "Siguiente", selected_image_index: @selected_image_index + 1, method: :get %>
-  </div>
-<% end %>
-
-<h1 class="title"><%= @product.title %></h1>
-<p class="description"><%= @product.description %></p>
-<span class="price"><%= @product.price %></span>
-<br>
-<% if @product&.tags.present? %>
-  <strong>Tags:</strong>
-<% end %>
-<% @product&.tags.each do |tag| %>
-  <%= link_to tag_path(tag.id), class: "tag", id: dom_id(tag) do %>
-    <span class="tag"><%= tag.name.capitalize %></span>
+<div class="flex items-center gap-2 text-gray-600 p-2 mx-2">
+  <%= link_to category_path(@product.category_id), class: "underline" do %>
+    <%= @productCategoryName %>
   <% end %>
-<% end %>
+  <span class="text-2xl">&gt;</span>
+  <%= @product.title %>
+</div>
+<article class="text-theme grid grid-cols-1 justify-center justify-items-center gap-2 p-4">
+  <h1 class="text-2xl justify-self-start"><%= @product.title %></h1>
+  <% if @product.photos.attached? %>
+    <%= image_tag @product.photos[@selected_image_index], class: "clip-square", width: 200 %>
+    <div class="flex gap-8">
+      <%= button_to "Anterior", selected_image_index: @selected_image_index - 1, method: :get %>
+      <%= button_to "Siguiente", selected_image_index: @selected_image_index + 1, method: :get %>
+    </div>
+  <% end %>
+  <span class="text-4xl text-center">Q<%= @product.price %></span>
+  <p class="description"><%= @product.description %></p>
+  <div class="justify-self-stretch">
+    <%= form_with model: @Cart, url: '/carts' do |form| %>
+      <%= form.label :title, 'Cantidad:' %>
+      <%= form.select :quantity, options_for_select((1..5).to_a), {}, { class: "border-0 rounded-xl bg-theme" } %>
+      <%= form.hidden_field :product_id, value: @product.id %>
+      <br>
+      <%= form.submit 'Añadir al carrito 🛒', class: "rounded-lg py-2 px-5 mt-4 bg-theme text-theme inline-block font-medium cursor-pointer grow basis-0 w-full" %>
+    <% end %>
+  </div>
+  <br>
+  <% if @product&.tags.present? %>
+    <div class="flex gap-2 w-full">
+      <strong>Tags:</strong>
 
-<%= form_with model: @Cart, url: '/carts' do |form| %>
-  <%= form.label :title, 'Cantidad:' %>
-  <%= form.select :quantity, options_for_select((1..5).to_a), {}, { class: "" } %>
-  <%= form.hidden_field :product_id, value: @product.id %>
+      <% @product&.tags.each do |tag| %>
+        <%= link_to tag_path(tag.id), class: "tag", id: dom_id(tag) do %>
+          <span class="tag underline"><%= tag.name.capitalize %></span>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+</article>
 
-  <%= form.submit '🛒', class: "rounded-lg py-3 px-5 bg-fuchsia-200 text-white inline-block font-medium cursor-pointer" %>
-<% end %>
 
 <% if Current.user.present? %>
   <% if Current.user.admin? %>

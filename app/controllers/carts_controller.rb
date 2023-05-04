@@ -17,8 +17,13 @@ class CartsController < ApplicationController
   end
 
   def index
-    @cart = Cart.all
-    @product = Product.joins(:carts).where(carts: { user_id: Current.user.id, order_id: nil }).select("products.*, carts.quantity as cart_quantity")
+    if Current.user.present?
+      @cart = Cart.all
+      @product = Product.joins(:carts).where(carts: { user_id: Current.user.id, order_id: nil }).select("products.*, carts.quantity as cart_quantity")
+    else
+      redirect_to new_session_path, notice: "Inicia Sesion para ver tu carrito."
+    end
+
   end
 
   def edit

@@ -14,6 +14,7 @@ class TagsController < ApplicationController
     @categoryList = Category.all
     @category = Product.joins(:taggings => :tag).where(:tags => { :id => @tag }).distinct
     @product = Product.joins(:taggings => :tag).where(:tags => { :id => @tag }).distinct
+    @tagName = @tag.name
   end
 
   # POST /tags

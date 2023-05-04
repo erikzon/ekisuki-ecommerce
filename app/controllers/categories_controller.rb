@@ -9,6 +9,8 @@ class CategoriesController < ApplicationController
   def index
     @category = Category.all
     @tag = Tag.order("RANDOM()").limit(5)
+    # @tag = Tag.joins(:taggings).where("taggings.product_id IS NOT NULL").distinct.order("RANDOM()").limit(5)
+
     @topSellerProduct = Product&.first
   end
 
