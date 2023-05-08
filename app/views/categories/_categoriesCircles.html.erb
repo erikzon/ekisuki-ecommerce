@@ -1,8 +1,8 @@
-<section class="grid grid-cols-2 sm:flex gap-8 p-4 text-center text-theme drop-shadow-lg">
+<section class="grid grid-cols-2 sm:flex sm:justify-center gap-8 sm:gap-20 p-4 text-center text-theme drop-shadow-lg">
   <% @category.each do |category| %>
     <!--    id:"<%#= dom_id category %>"-->
     <%= link_to category_path(category.id), class: "", id: dom_id(category) do %>
-      <%= image_tag category&.photo, class: "clip-circle hover:bg-grey-600" if category.photo.attached? %>
+      <%= image_tag category&.photo, class: "clip-circle hover:bg-grey-600 sm:h-32 sm:max-w-full" if category.photo.attached? %>
       <p class="text-theme">
         <%= category.name %>
       </p>
