@@ -1,6 +1,6 @@
 <%= render 'categories/categoriesCircles' %>
 
-<section class="grid grid-cols-1 text-theme p-4 justify-center">
+<section class="grid grid-cols-1 sm:w-4/5 md:w-3/5 sm:mx-auto  sm:grid-cols-2 sm:justify-center sm:text-center text-theme p-4 justify-center">
   <article class="text-center">
     <div class="">
       <h2 class="text-4xl my-4">Como Ordenar</h2>
@@ -13,11 +13,14 @@
   <article class="grid grid-cols-1 justify-items-center text-center">
     <h2 class="text-4xl mt-6 mb-4">Lo mas Vendido</h2>
     <%= image_tag @topSellerProduct&.photos[0], width: 200 if @topSellerProduct&.photos&.attached? %>
-    <div class="">
+  </article>
+  <article class="grid grid-cols-1 justify-items-center sm:col-span-2 sm:flex sm:items-center">
+    <%= image_tag @topSellerProduct&.photos[0],class:'hidden sm:block', width: 200 if @topSellerProduct&.photos&.attached? %>
+    <p>
       Somo una tienda en línea con mas de 10 año de experiencia, empezamos como un pequeño
       emprendimiento, realizando bisutería con diferentes materiales como porcelana fría, poco
       a poco nos fuimos expandiendo hasta tener productos sublimados e impresos.
-    </div>
+    </p>
   </article>
 </section>
 
