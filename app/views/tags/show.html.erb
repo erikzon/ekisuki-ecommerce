@@ -1,11 +1,17 @@
 <%= render 'categories/categoriesList' %>
 <div class="sm:hidden basis-full text-gray-600 mx-4 mt-4">
-<span class="font-bold text-xl">
-    <%= @tag.name %>
+  <span class="font-bold text-xl">
+      <%= @tag.name %>
   </span>
 </div>
 
-<div class="grid grid-cols-2 gap-4 p-4 sm:grid-cols-3">
+<div class="md:w-4/6 md:mx-auto grid grid-cols-2 gap-4 p-4 sm:grid-cols-4">
+  <div class="hidden sm:block basis-full text-gray-600 mx-4 mt-4 sm:col-span-4">
+    Todos los productos relacionados con la etiqueta:
+    <span class="font-bold text-xl">
+        <%= @tag.name %>
+    </span>
+  </div>
   <% @product.each do |product| %>
     <%= link_to product_path(product.id), class: "my-2 flex flex-col justify-center hover:shadow-xl hover:rounded-xl ease-in-out duration-300 hover:scale-105", id: dom_id(product) do %>
       <%= image_tag product&.photos[0], class: "clip-square" if product.photos.attached? %>

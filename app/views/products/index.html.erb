@@ -1,4 +1,4 @@
-<div class="grid grid-cols-2 gap-4 p-4 sm:grid-cols-3">
+<div class="grid md:w-4/6 md:mx-auto grid-cols-2 gap-4 p-4 sm:grid-cols-3 md:grid-cols-4">
 <% @product.each do |product| %>
   <%= link_to product_path(product.id), class: "my-2 flex flex-col justify-center hover:shadow-xl hover:rounded-xl ease-in-out duration-300 hover:scale-105", id: dom_id(product) do %>
     <%= image_tag product&.photos[0], class: "clip-square" if product.photos.attached? %>

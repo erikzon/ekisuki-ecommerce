@@ -4,16 +4,18 @@
     <%= @category.name %>
   </span>
 </div>
-<div class="flex">
-  <div class="hidden sm:flex">
-    <%= @category.name %>
+<div class="flex md:w-4/6 md:mx-auto sm:grid sm:grid-cols-4">
+  <div class="hidden sm:flex sm:flex-col gap-4 sm:w-3/5 basis-full mx-4 mt-4">
+    <span class="font-bold text-gray-600 text-xl">
+      <%= @category.name %>
+    </span>
     <% @tagLista.each do |tag| %>
-      <%= link_to tag_path(tag.id), class: "tag", id: dom_id(tag) do %>
+      <%= link_to tag_path(tag.id), class: "text-theme hover:text-fuchsia-300 ml-4 hover:underline", id: dom_id(tag) do %>
         <%= tag.name %>
       <% end %>
     <% end %>
   </div>
-  <div class="grid grid-cols-2 gap-4 p-4 sm:grid-cols-3">
+  <div class="grid grid-cols-2 gap-4 p-4 sm:grid-cols-2 sm:col-span-3 md:grid-cols-3">
     <% @product.each do |product| %>
       <%= link_to product_path(product.id), class: "my-2 flex flex-col justify-center hover:shadow-xl hover:rounded-xl ease-in-out duration-300 hover:scale-105", id: dom_id(product) do %>
         <%= image_tag product&.photos[0], class: "clip-square" if product.photos.attached? %>
