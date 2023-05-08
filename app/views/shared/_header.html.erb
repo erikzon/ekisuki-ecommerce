@@ -32,7 +32,7 @@
       </label>
     </div>
     <% if Current.user.present? %>
-      <%= button_to logout_path,class:'justify-self-end', method: :delete do %>
+      <%= button_to logout_path,class:'justify-self-end ml-2 mt-1 mr-0', method: :delete do %>
         <%= image_tag 'icons/salirIcon.svg', width: 42, height: 42 %>
       <% end %>
     <% else %>
