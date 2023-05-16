@@ -3,15 +3,16 @@ class CartsController < ApplicationController
 
   def create
     if !Current.user
-      redirect_to new_session_path, notice: "Porfavor inicia sesion para realizar ordenes."
+      redirect_to new_session_path, notice: "Porfavor inicia sesión para realizar ordenes."
       return
     end
     @cart = Cart.find_by(product_id: params[:product_id])
     if @cart
       @cart.update(quantity: params[:quantity])
-      redirect_to product_path(product), notice: "Cantidad Actualizada."
+      @cart.update(size: params[:size])
+      redirect_to product_path(product), notice: "Carrito Actualizado."
     else
-      Cart.create(product: product, user: Current.user, quantity: params[:quantity])
+      Cart.create(product: product, user: Current.user, quantity: params[:quantity], size: params[:size])
       redirect_to product_path(product), notice: "Se agrego al carrito."
     end
   end

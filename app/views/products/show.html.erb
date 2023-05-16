@@ -21,10 +21,6 @@
 
   <div class="m-4 md:col-span-2">
     <%= image_tag @product.photos[@selected_image_index], class: "clip-square md:max-h-96" %>
-    <div class="flex justify-center gap-8">
-      <%= button_to "Anterior", selected_image_index: @selected_image_index - 1, method: :get %>
-      <%= button_to "Siguiente", selected_image_index: @selected_image_index + 1, method: :get %>
-    </div>
   </div>
 
   <div class="flex flex-col gap-4">
@@ -32,9 +28,12 @@
     <span class="text-4xl text-center md:text-left">Q<%= @product.price %></span>
     <p class="description"><%= @product.description %></p>
     <div class="justify-self-stretch">
-      <%= form_with model: @Cart, url: '/carts' do |form| %>
-        <%= form.label :title, 'Cantidad:' %>
+      <%= form_with model: @Cart, class: '' ,url: '/carts' do |form| %>
+        <%= form.label :quantity, 'Cantidad:' %>
         <%= form.select :quantity, options_for_select((1..5).to_a), {}, { class: "border-0 rounded-xl bg-theme" } %>
+        <br class="hidden sm:block">
+        <%= form.label :size, 'Tamaño:', class: 'ml-4 sm:ml-0' %>
+        <%= form.select :size, options_for_select(['S', 'M', 'L'], 'M'), {}, { class: "mt-4  border-0 rounded-xl bg-theme" } %>
         <%= form.hidden_field :product_id, value: @product.id %>
         <br>
         <%= form.submit 'Añadir al carrito 🛒', class: "rounded-lg py-2 px-5 mt-4 bg-theme text-theme inline-block font-medium cursor-pointer grow basis-0 w-full" %>
