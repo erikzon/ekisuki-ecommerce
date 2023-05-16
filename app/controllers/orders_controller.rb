@@ -36,8 +36,10 @@ class OrdersController < ApplicationController
     respond_to do |format|
       if @order.save
         # traer la carreta del usuario actual con order_id null
-        @cart = Cart.find_by(user_id: Current.user)
-        @cart.update(order_id: @order.id)
+        @carts = Cart.where(user_id: Current.user)
+        @carts.each do |cart|
+          cart.update(order_id: @order.id)
+        end
         format.html { redirect_to order_url(@order), notice: "Order was successfully created." }
       else
         format.html { render :new, status: :unprocessable_entity }

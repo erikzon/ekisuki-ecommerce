@@ -28,6 +28,10 @@
             <div class="flex flex-col">
               <%= product.title %>
               <br>
+              <% if product.cart_size %>
+                tamaño: <%= product.cart_size %>
+                <br>
+              <% end %>
               Q<%= product.price %> c/u
               <br>
               sub-total Q<%= product.price * product.cart_quantity %>

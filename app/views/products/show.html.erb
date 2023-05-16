@@ -32,8 +32,10 @@
         <%= form.label :quantity, 'Cantidad:' %>
         <%= form.select :quantity, options_for_select((1..5).to_a), {}, { class: "border-0 rounded-xl bg-theme" } %>
         <br class="hidden sm:block">
-        <%= form.label :size, 'Tamaño:', class: 'ml-4 sm:ml-0' %>
-        <%= form.select :size, options_for_select(['S', 'M', 'L'], 'M'), {}, { class: "mt-4  border-0 rounded-xl bg-theme" } %>
+        <% if @productCategoryIsClothes %>
+          <%= form.label :size, 'Tamaño:', class: 'ml-4 sm:ml-0' %>
+          <%= form.select :size, options_for_select(['S', 'M', 'L'], 'M'), {}, { class: "mt-4  border-0 rounded-xl bg-theme" } %>
+        <% end %>
         <%= form.hidden_field :product_id, value: @product.id %>
         <br>
         <%= form.submit 'Añadir al carrito 🛒', class: "rounded-lg py-2 px-5 mt-4 bg-theme text-theme inline-block font-medium cursor-pointer grow basis-0 w-full" %>

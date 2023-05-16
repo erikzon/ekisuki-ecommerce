@@ -21,6 +21,11 @@
     <%= form.file_field :photo %>
   </div>
 
+  <div class="my-5">
+    <%= form.label :isClothes, 'Es Ropa? esto mostrara seleccion de tamaño' %>
+    <%= form.check_box :isClothes %>
+  </div>
+
   <div class="inline">
     <%= form.submit class: "rounded-lg py-3 px-5 bg-fuchsia-600 text-white inline-block font-medium cursor-pointer" %>
   </div>
