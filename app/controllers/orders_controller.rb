@@ -36,11 +36,12 @@ class OrdersController < ApplicationController
     respond_to do |format|
       if @order.save
         # traer la carreta del usuario actual con order_id null
-        @carts = Cart.where(user_id: Current.user)
+        @carts = Cart.where(user_id: Current.user, order_id: nil )
         @carts.each do |cart|
           cart.update(order_id: @order.id)
         end
-        format.html { redirect_to order_url(@order), notice: "Order was successfully created." }
+        OrderMailer.with(user: Current.user,order: @order, cart: @carts).confirmOrder.deliver_later
+        format.html { redirect_to order_url(@order), notice: "Gracias! por favor revisa tu correo." }
       else
         format.html { render :new, status: :unprocessable_entity }
       end
