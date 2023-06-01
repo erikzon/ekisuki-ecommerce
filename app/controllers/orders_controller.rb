@@ -40,7 +40,7 @@ class OrdersController < ApplicationController
         @carts.each do |cart|
           cart.update(order_id: @order.id)
         end
-        OrderMailer.with(user: Current.user,order: @order, cart: @carts).confirmOrder.deliver_later
+        OrderMailer.with(user: Current.user, order: @order, cart: @carts.to_a).confirmOrder.deliver_later
         format.html { redirect_to order_url(@order), notice: "Gracias! por favor revisa tu correo." }
       else
         format.html { render :new, status: :unprocessable_entity }

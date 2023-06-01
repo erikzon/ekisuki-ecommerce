@@ -23,7 +23,7 @@ class CartsController < ApplicationController
       @product = Product.joins(:carts).where(carts: { user_id: Current.user.id, order_id: nil })
                         .select("products.*, carts.quantity as cart_quantity, carts.size as cart_size")
     else
-      redirect_to new_session_path, notice: "Inicia Sesion para ver tu carrito."
+      redirect_to new_session_path, notice: "Inicia sesion para ver tu carrito."
     end
 
   end
