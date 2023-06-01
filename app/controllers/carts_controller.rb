@@ -6,7 +6,7 @@ class CartsController < ApplicationController
       redirect_to new_session_path, notice: "Porfavor inicia sesión para realizar ordenes."
       return
     end
-    @cart = Cart.find_by(product_id: params[:product_id])
+    @cart = Cart.find_by(product_id: params[:product_id],order_id: nil, user_id: Current.user.id)
     if @cart
       @cart.update(quantity: params[:quantity])
       @cart.update(size: params[:size])
