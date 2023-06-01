@@ -16,7 +16,7 @@ default: &default
   username: erick
   password: <%= ENV["EKISUKI_ECOMMERCE_DATABASE_PASSWORD"] %>
   host: localhost
-  port: 5433
+  port: 5432
 
 development:
   <<: *default
@@ -52,5 +52,5 @@ test:
 production:
   <<: *default
   database: ekisuki_ecommerce_production
-  username: erick
+  username: rails
   password: <%= ENV["EKISUKI_ECOMMERCE_DATABASE_PASSWORD"] %>
