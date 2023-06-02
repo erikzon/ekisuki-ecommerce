@@ -39,11 +39,11 @@
 
 
     <% if Current.user.present? %>
-      <%= button_to logout_path,class:'justify-self-end ml-2 mt-2 mr-0', method: :delete do %>
+      <%= button_to logout_path,class:'justify-self-end ml-2 mt-2 mr-0 lg:ml-8', method: :delete do %>
         <%= image_tag 'icons/salirIcon.svg', width: 42, height: 42 %>
       <% end %>
     <% else %>
-      <%= link_to new_session_path ,class:'justify-self-end mr-2' do %>
+      <%= link_to new_session_path ,class:'justify-self-end mr-2 lg:mr-1' do %>
         <%= image_tag 'icons/loginIcon.svg', width: 42, height: 42 %>
       <% end %>
     <% end %>

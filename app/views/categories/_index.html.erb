@@ -4,7 +4,7 @@
     <%= link_to 'Agregar Categoria', new_category_path, class: "rounded-lg py-3 px-5 bg-fuchsia-600 text-white block font-medium" %>
   </div>
 
-  <div id="categories" class="min-w-full">
+  <div id="categories" class="min-w-full grid grid-cols-2">
     <%= render @categories %>
   </div>
 </div>

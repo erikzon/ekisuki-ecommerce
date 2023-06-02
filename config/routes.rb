@@ -6,8 +6,8 @@ Rails.application.routes.draw do
   resources :tags, except: [:index]
   resources :products, except: [:new]
   resources :carts, param: :product_id
-  resources :orders, except: [:destroy, :show]
   get '/orders/confirm', to: 'orders#update'
+  resources :orders, except: [:destroy]
 
   namespace :authentication, path: '', as: '' do
     resources :users, only: [:new, :create]

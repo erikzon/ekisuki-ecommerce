@@ -1,6 +1,9 @@
 <div>
   <h1 class="font-bold text-4xl">Panel de Control</h1>
-  <%= render 'categories/index' %>
   <%= render 'products/new' %>
+  <div class="overflow-scroll h-96">
+    <%= render 'orders/index' %>
+  </div>
+  <%= render 'categories/index' %>
   <%= render 'tags/index' %>
 </div>

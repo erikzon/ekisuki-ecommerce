@@ -3,13 +3,63 @@
     <% if notice.present? %>
       <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
     <% end %>
+    <h2 class="text-2xl">
+      Orden #<%= @order.id %>
+    </h2>
+    <div class="relative overflow-x-auto text-theme">
 
-    <%= render @order %>
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+    <% @product.each do |product| %>
+      <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-theme">
+        <th scope="row" class="px-6 py-2 md:p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+          <% if product.photos.attached? %>
+            <%= link_to product_path(product.id), class: "my-8", id: dom_id(product) do %>
+              <%= image_tag product.photos[0], width: 200 %>
+            <% end %>
+          <% end %>
+        </th>
+        <td class="px-2 py-2 md:p-0 text-sm">
+          <div class="flex flex-col">
+            <%= product.title %>
+            <br>
+            <% if product.cart_size %>
+              tamaño: <%= product.cart_size %>
+              <br>
+            <% end %>
+            Q<%= product.price %> c/u
+            <br>
+            sub-total Q<%= product.price * product.cart_quantity %>
+          </div>
+        </td>
+        <td class="px-4 py-2 md:p-0">
+          <%= form_with model: @cart, url: cart_path(product_id: product.id), method: :patch do |form| %>
+            <%= form.select :quantity, options_for_select((1..5).to_a, product.cart_quantity), {}, { class: "border-0 rounded-xl bg-theme", disabled: true} %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+    </table>
+    </div>
 
+    <div class="flex flex-col">
+      <h3 class="text-2xl">Datos de cliente</h3>
+      <span class="text-gray-600 ml-2 underline">Direccion de entrega:</span>
+      <%= @order.shipping_address %>
+      <span class="text-gray-600 ml-2 underline">Numero de Telefono:</span>
+      <%= @order.phone_number %>
+      <span class="text-gray-600 ml-2 underline">email:</span>
+      <%= @order.email %>
+      <span class="text-gray-600 ml-2 underline">nombre:</span>
+      <%= @order.name %>
+      <span class="text-gray-600 ml-2 underline">Total:</span>
+      Q<%= @order.total %>
+    </div>
     <%= link_to 'Edit this order', edit_order_path(@order), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
     <div class="inline-block ml-2">
       <%= button_to 'Destroy this order', order_path(@order), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
     </div>
-    <%= link_to 'Back to orders', orders_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to 'Regresar', admin_index_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+
   </div>
+
 </div>

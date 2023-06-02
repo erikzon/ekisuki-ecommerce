@@ -1,10 +1,15 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: %i[ destroy ]
-  skip_before_action :protect_pages, only: %i[ create new ]
+  skip_before_action :protect_pages, only: %i[ create new update ]
 
   # GET /orders or /orders.json
   def index
     @orders = Order.all
+  end
+  def show
+    @order = Order.find(params[:id])
+    @product = Product.joins(:carts).where(carts: { user_id: @order.user_id, order_id: @order.id })
+                      .select("products.*, carts.quantity as cart_quantity, carts.size as cart_size")
   end
 
   def update
