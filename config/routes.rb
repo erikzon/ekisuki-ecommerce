@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :products, except: [:new]
   resources :carts, param: :product_id
   get '/orders/confirm', to: 'orders#update'
+  get '/orders/instrucciones', to: 'orders#instrucciones'
   resources :orders, except: [:destroy]
 
   namespace :authentication, path: '', as: '' do

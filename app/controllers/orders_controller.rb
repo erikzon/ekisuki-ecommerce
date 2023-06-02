@@ -52,14 +52,14 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params.merge(user_id: Current.user.id, total: @total, token: SecureRandom.urlsafe_base64(32,padding: false)))
 
     respond_to do |format|
-      if @order.save
+      if verify_recaptcha(model: @order) && @order.save
         # traer la carreta del usuario actual con order_id null
         @carts = Cart.where(user_id: Current.user, order_id: nil )
         @carts.each do |cart|
           cart.update(order_id: @order.id)
         end
         OrderMailer.with(user: Current.user, order: @order, cart: @carts.to_a).confirmOrder.deliver_later
-        format.html { redirect_to order_url(@order), notice: "Gracias! por favor revisa tu correo." }
+        format.html { redirect_to '/orders/instrucciones', notice: "Gracias! por favor revisa tu correo." }
       else
         format.html { render :new, status: :unprocessable_entity }
       end
