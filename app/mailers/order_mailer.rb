@@ -17,4 +17,8 @@ class OrderMailer < ApplicationMailer
 
     mail to: @user.email
   end
+
+  def notifyUs
+    mail to: "ericksonoliva@gmail.com"
+  end
 end

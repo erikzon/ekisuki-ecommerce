@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: %i[ show edit update destroy ]
+  before_action :set_order, only: %i[ destroy ]
   skip_before_action :protect_pages, only: %i[ create new ]
 
   # GET /orders or /orders.json
@@ -7,8 +7,20 @@ class OrdersController < ApplicationController
     @orders = Order.all
   end
 
-  # GET /orders/1 or /orders/1.json
-  def show
+  def update
+    @order = Order.find_by(token: params[:token])
+    encontrado = @order.present?
+    previamenteConfirmada = @order&.confirmed
+    if @order&.update(confirmed: true) and encontrado
+      # Acción exitosa
+      if not previamenteConfirmada
+        OrderMailer.notifyUs.deliver_later
+      end
+      @mensaje = "Gracias por confirmar, tu orden sera despachada en breve!"
+    else
+      # Error en la actualización
+      @mensaje = "El token no es valido! Porfavor revisa tu url."
+    end
   end
 
   # GET /orders/new
@@ -30,8 +42,9 @@ class OrdersController < ApplicationController
   def create
     @product = Product.joins(:carts).where(carts: { user_id: Current.user.id, order_id: nil }).select("products.*, carts.quantity as cart_quantity")
     @total = @product.map { |p| p.price * p.cart_quantity }.sum
+    require 'securerandom'
 
-    @order = Order.new(order_params.merge(user_id: Current.user.id, total: @total))
+    @order = Order.new(order_params.merge(user_id: Current.user.id, total: @total, token: SecureRandom.urlsafe_base64(32,padding: false)))
 
     respond_to do |format|
       if @order.save

@@ -52,6 +52,8 @@ gem "bootsnap", require: false
 #postgresql fulltextsearch
 gem "pg_search", "~> 2.3"
 
+gem 'securerandom'
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 
