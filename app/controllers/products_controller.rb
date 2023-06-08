@@ -18,10 +18,14 @@ class ProductsController < ApplicationController
 
   def update
     @product = Product.find(params[:id])
+    previous_photos = @product.photos.attachments.to_a
     @product.assign_attributes(product_params.except(:tags))
     create_or_delete_product_tags(@product, params[:product][:tags])
     if @product.tags.present?
       if @product.save
+        previous_photos.each do |attachment|
+          @product.photos.attach(attachment.blob)
+        end
         redirect_to product_path(product.id), notice: "Producto editado correctamente"
       else
         redirect_to product_path(product.id), status: :unprocessable_entity, alert: "No se pudo editar el producto."
@@ -71,7 +75,6 @@ class ProductsController < ApplicationController
   def create_or_delete_product_tags(product, tags)
     product.taggings.destroy_all
     tags&.each do |tag|
-      pp Tag.find_or_create_by(id: tag)
       product.tags << Tag.find_or_create_by(id: tag)
     end
   end

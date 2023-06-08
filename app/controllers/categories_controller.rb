@@ -38,6 +38,7 @@ class CategoriesController < ApplicationController
   # PATCH/PUT /categories/1 or /categories/1.json
   def update
     respond_to do |format|
+      pp category_params
       if @category.update(category_params)
         format.html { redirect_to admin_index_path, notice: "Categoria actualizada." }
       else

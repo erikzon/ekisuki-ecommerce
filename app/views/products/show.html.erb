@@ -20,7 +20,7 @@
   <h1 class="md:hidden text-2xl justify-self-start"><%= @product.title %></h1>
 
   <div class="m-4 md:col-span-2">
-    <%= image_tag @product.photos[@selected_image_index], class: "clip-square md:max-h-96" %>
+    <%= image_tag @product.photos[0], class: "clip-square md:max-h-96" %>
   </div>
 
   <div class="flex flex-col gap-4">

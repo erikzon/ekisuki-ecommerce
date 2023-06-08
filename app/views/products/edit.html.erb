@@ -26,7 +26,15 @@
 
       <div class="my-5">
         <%= form.label :tag, 'Tags' %>
-        <%= form.collection_check_boxes :tags, Tag.all.order(name: :asc), :id, :name, { :include_hidden => false }, { multiple: true } %>
+        <%#= form.collection_check_boxes :tags, Tag.all.order(name: :asc), :id, :name, { :include_hidden => false }, { multiple: true, checked: @product.tags.ids } %>
+
+        <%#= form.collection_check_boxes(:tags, @product.tags.ids, :id, :name) %>
+        <%= form.collection_check_boxes :tags, Tag.all.order(name: :asc), :id, :name, { :include_hidden => false } do |b| %>
+          <%= b.label(class: "mr-2") do %>
+            <%= b.check_box(class: "", checked: @product.tags.ids.include?(b.value)) %>
+            <%= b.text %>
+          <% end %>
+        <% end %>
       </div>
 
       <div class="my-5">
@@ -35,6 +43,6 @@
       </div>
     </div>
     <%= form.submit 'Editar producto', class: "rounded-lg py-3 px-5 bg-fuchsia-600 text-white inline-block font-medium cursor-pointer" %>
-    <%= link_to 'Regresar al Home', products_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to 'Regresar al producto', product_path(@product.id), class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
   <% end %>
 </div>
