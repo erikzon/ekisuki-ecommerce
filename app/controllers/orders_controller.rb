@@ -46,13 +46,14 @@ class OrdersController < ApplicationController
   # POST /orders or /orders.json
   def create
     @product = Product.joins(:carts).where(carts: { user_id: Current.user.id, order_id: nil }).select("products.*, carts.quantity as cart_quantity")
-    @total = @product.map { |p| p.price * p.cart_quantity }.sum
+    @total = @product.map { |p| p.price * p.cart_quantity }.sum + 35
     require 'securerandom'
 
     @order = Order.new(order_params.merge(user_id: Current.user.id, total: @total, token: SecureRandom.urlsafe_base64(32,padding: false)))
 
     respond_to do |format|
-      if verify_recaptcha(model: @order) && @order.save
+      # if verify_recaptcha(model: @order) && @order.save
+      if @order.save
         # traer la carreta del usuario actual con order_id null
         @carts = Cart.where(user_id: Current.user, order_id: nil )
         @carts.each do |cart|

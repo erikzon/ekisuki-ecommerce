@@ -1,4 +1,4 @@
-<div id="<%= dom_id order %>" class="flex my-3 items-center gap-8">
+<div id="<%= dom_id order %>" class="flex my-3 items-center gap-2 lg:gap-8">
   <span class="text-2xl text-gray-700">Orden #<%= order.id %></span>
   <% if action_name != "show" %>
     <% if order.confirmed %>
@@ -7,7 +7,9 @@
       no confirmada🚫
     <% end %>
     |
-    <%= order.updated_at.in_time_zone("Central Time (US & Canada)").strftime('%d/%m/%Y - %I:%M %p') %>
+    <%= order.updated_at.in_time_zone("Central America").strftime('%d/%m/%Y - %I:%M %p') %>
+    |
+    total: Q<%= order.total %>
 
     <%= link_to "Ver Orden", order, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
 
