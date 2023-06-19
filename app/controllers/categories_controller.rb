@@ -9,9 +9,15 @@ class CategoriesController < ApplicationController
   def index
     @category = Category.all
     @tag = Tag.order("RANDOM()").limit(5)
-    # @tag = Tag.joins(:taggings).where("taggings.product_id IS NOT NULL").distinct.order("RANDOM()").limit(5)
 
-    @topSellerProduct = Product&.first
+
+    #producto mas vendido es el ID que mas se repite en los carritos que han sido vendidos
+    @topSellerProduct = Product.find(Cart.where.not(order_id: nil)
+                            .group(:product_id)
+                            .order('count_product_id DESC')
+                            .count('product_id')
+                            .first
+                          &.first)
   end
 
   # GET /categories/1/edit

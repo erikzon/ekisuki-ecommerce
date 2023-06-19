@@ -1,27 +1,37 @@
+<%= image_tag "landingpage/yaAbrimos.webp", class:"mx-auto w-full md:w-3/4 mt-2"%>
+
 <%= render 'categories/categoriesCircles' %>
 
-<section class="grid grid-cols-1 sm:w-4/5 md:w-3/5 sm:mx-auto  sm:grid-cols-2 sm:justify-center sm:text-center text-theme p-4 justify-center">
+<section class="grid grid-cols-1 sm:w-4/5 md:w-4/5 sm:mx-auto  sm:grid-cols-2 sm:justify-center sm:text-center text-theme p-4 justify-center">
   <article class="text-center">
     <div class="">
       <h2 class="text-4xl my-4">Como Ordenar</h2>
       <p>Unicamente agregas al carrito los articulos, completas los datos requerridos
-        y al mandar el pedido se te estara enviando un correo de confirmacion de orden,
-        ten en cuenta por el momento realizamos enviós en el area de la capital, si tu orden
+        y al mandar el pedido se te estara enviando un correo de confirmacion de orden!
+        Ten en cuenta por el momento realizamos enviós en el area de la capital, si tu orden
         es a un seccion donde no tenemos cobertura se te notificará por correo</p>
     </div>
   </article>
   <article class="grid grid-cols-1 justify-items-center text-center">
     <h2 class="text-4xl mt-6 mb-4">Lo mas Vendido</h2>
-    <%= image_tag @topSellerProduct&.photos[0], width: 200 if @topSellerProduct&.photos&.attached? %>
+    <%= image_tag @topSellerProduct&.photos[0], width: 250 if @topSellerProduct&.photos&.attached? %>
   </article>
-  <article class="grid grid-cols-1 justify-items-center sm:col-span-2 sm:flex sm:items-center">
-    <%= image_tag @topSellerProduct&.photos[0],class:'hidden sm:block', width: 200 if @topSellerProduct&.photos&.attached? %>
-    <p>
-      Somo una tienda en línea con mas de 10 año de experiencia, empezamos como un pequeño
-      emprendimiento, realizando bisutería con diferentes materiales como porcelana fría, poco
-      a poco nos fuimos expandiendo hasta tener productos sublimados e impresos.
-    </p>
-  </article>
+<!--  <article class="grid grid-cols-1 justify-items-center sm:col-span-2 sm:flex sm:items-center">-->
+    <%#= image_tag @topSellerProduct&.photos[0],class:'hidden sm:block', width: 200 if @topSellerProduct&.photos&.attached? %>
+<!--    <p>-->
+<!--      Somo una tienda en línea con mas de 10 año de experiencia, empezamos como un pequeño-->
+<!--      emprendimiento, realizando bisutería con diferentes materiales como porcelana fría, poco-->
+<!--      a poco nos fuimos expandiendo hasta tener productos sublimados e impresos.-->
+<!--    </p>-->
+<!--  </article>-->
 </section>
 
 <%= render 'tags/tagsFooter' %>
+
+<section class="grid grid-cols-2 md:flex md:justify-center gap-2 md:gap-8 p-4">
+  <%= image_tag "landingpage/enviosguatemala.webp", class: "clip-square md:h-48 md:max-w-full" %>
+  <%= image_tag "landingpage/pagoContraEntrega.webp", class: "clip-square md:h-48 md:max-w-full" %>
+  <%= image_tag "landingpage/productosNovedosos.webp", class: "clip-square md:h-48 md:max-w-full" %>
+  <%= image_tag "landingpage/productosNuevos.webp", class: "clip-square md:h-48 md:max-w-full" %>
+</section>
+
