@@ -6,7 +6,7 @@ Recaptcha.configure do |config|
   # Uncomment the following line if you are using a proxy server:
   # config.proxy = 'http://myproxy.com.au:8080'
 
-  Uncomment the following lines if you are using the Enterprise API:
+  #Uncomment the following lines if you are using the Enterprise API:
   config.enterprise = ENV["RECAPTCHA_ENTERPRISE"]
   config.enterprise_api_key = ENV["RECAPTCHA_ENTERPRISE_API_KEY"]
   config.enterprise_project_id = ENV["RECAPTCHA_ENTERPRISE_PROJECT_ID"]
