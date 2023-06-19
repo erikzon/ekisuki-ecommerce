@@ -7,6 +7,7 @@ class Authentication::UsersController < ApplicationController
   end
 
   def create
+    @category = Category.all
     @user = User.new(user_params)
     if verify_recaptcha(model: @user) && @user.save
       UserMailer.with(user: @user).welcome.deliver_later
