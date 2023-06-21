@@ -47,9 +47,9 @@
       </div>
       <%= form.text_area :note, value: @last_order_note, class: 'placeholder:italic placeholder:text-slate-400 block bg-white w-full border-2 border-theme rounded-xl py-2 pl-3 pr-9 shadow-lg focus:outline-none focus:border-fuchsia-500 focus:ring-fuchsia-500 focus:ring-1 sm:text-sm'  %>
     </div>
-<!--    <div class="flex justify-center mt-4 mb-1 p-4">-->
-      <%#= recaptcha_tags %>
-<!--    </div>-->
+    <div class="flex justify-center mt-4 mb-1 p-4">
+      <%= recaptcha_tags %>
+    </div>
     <div class="flex justify-center mt-4 mb-1 p-4">
       <%= form.submit 'Ordenar', class: 'px-6 py-3 rounded-xl drop-shadow-lg bg-theme' %>
     </div>

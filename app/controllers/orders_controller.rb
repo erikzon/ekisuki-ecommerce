@@ -53,7 +53,7 @@ class OrdersController < ApplicationController
 
     respond_to do |format|
       # if verify_recaptcha(model: @order) && @order.save
-      if @order.save
+      if verify_recaptcha(model: @order) && @order.save
         # traer la carreta del usuario actual con order_id null
         @carts = Cart.where(user_id: Current.user, order_id: nil )
         @carts.each do |cart|
