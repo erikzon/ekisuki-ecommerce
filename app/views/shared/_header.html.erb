@@ -50,16 +50,10 @@
     <% end %>
     </div>
 
-
-    <% if Current.user.present? %>
-      <%= button_to logout_path,class:'justify-self-end ml-2 mt-2 mr-0 lg:ml-8', method: :delete do %>
-        <%= image_tag 'icons/salirIcon.svg', width: 42, height: 42 %>
-      <% end %>
-    <% else %>
-      <%= link_to new_session_path ,class:'justify-self-end mr-2 lg:mr-1' do %>
-        <%= image_tag 'icons/loginIcon.svg', width: 42, height: 42 %>
-      <% end %>
+    <%= link_to new_session_path ,class:'justify-self-end mr-2 lg:mr-1' do %>
+      <%= image_tag(Current.user.present? ? 'icons/salirIcon.svg' : 'icons/loginIcon.svg', width: 42, height: 42) %>
     <% end %>
+
     <%= image_tag 'icons/saleIcon.svg', class: 'hidden sm:block', width: 42, height: 42 %>
     <%= link_to carts_path, class: 'justify-self-start' do %>
       <%= image_tag 'icons/cartIcon.svg', width: 43, height: 43 %>

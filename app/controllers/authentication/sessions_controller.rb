@@ -2,6 +2,9 @@ class Authentication::SessionsController < ApplicationController
   skip_before_action :protect_pages
 
   def new
+    if Current.user.present?
+      destroy
+    end
     @category = Category.all
   end
 
@@ -24,6 +27,6 @@ class Authentication::SessionsController < ApplicationController
   def destroy
     session[:user_id] = nil
     reset_session
-    redirect_to products_path, notice: "Sesion Finalizada."
+    redirect_to categories_path, notice: "Sesion Finalizada."
   end
 end
