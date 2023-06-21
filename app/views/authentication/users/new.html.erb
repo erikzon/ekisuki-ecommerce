@@ -29,7 +29,7 @@
       <%= form.password_field :password_confirmation , class: 'placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-transparent rounded-xl  pl-3 pr-9 shadow-lg focus:outline-none focus:border-fuchsia-500 focus:ring-fuchsia-500 focus:ring-1 sm:text-sm' %>
     </div>
     <div class="flex justify-center mt-4 mb-1 p-4">
-      <%= recaptcha_tags %>
+      <%= recaptcha_tags(noscript: false) %>
     </div>
     <div class="flex justify-center mt-4 mb-1 p-4">
       <%= form.submit 'Crear Usuario', class: 'px-6 py-3 rounded-xl drop-shadow-xl bg-white'%>
