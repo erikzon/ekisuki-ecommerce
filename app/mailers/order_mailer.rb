@@ -19,6 +19,6 @@ class OrderMailer < ApplicationMailer
   end
 
   def notifyUs
-    mail to: "ericksonoliva@gmail.com"
+    mail to: "eledos18@gmail.com"
   end
 end
